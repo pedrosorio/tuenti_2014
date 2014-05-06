@@ -2,7 +2,7 @@ An interesting problem. The multiple trains/routes makes it not obvious.
 Since the limits were quite low I decided to attempt a backtracking approach with some techniques to limit the branching:
 * Always try to move a train several times in a row - only consider moving the other train if the current one has run out of fuel or has just brought a wagon to a station that is shared by both networks - this avoids exploring permutations of moves that are equivalent
 * Never let the same wagon visit the same station twice
-* Build the all-pairs graph for each network using ford-fulkerson before beginning and allow a train to move/carry a wagon directly to any station in a network. Then, forbid a train from carrying the same wagon/moving without a wagon twice in a row.
+* Build the all-pairs graph for each network using ~~Ford-Fulkerson~~ Floyd-Warshall (I always swap these two names...)  before beginning and allow a train to move/carry a wagon directly to any station in a network. Then, forbid a train from carrying the same wagon/moving without a wagon twice in a row.
 
 All of the above help in some way, but ensuring that the search terminates early when there is obviously no hope of beating the best value found so far is essential. In order to do that:
 * Before starting, build the all-pairs graph for the full map and precompute an array of wagons in descending order of values, with the corresponding distances to their destinations. 
